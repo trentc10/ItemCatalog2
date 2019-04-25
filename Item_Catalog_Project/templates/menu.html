@@ -1,0 +1,41 @@
+<html>
+
+<head>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+{%if 'username' not in session %}
+<a href="{{url_for('showLogin')}}">Click Here to Login </a>
+{% else %}
+<a href="{{url_for('gdisconnect')}}">Logout </a>
+{% endif %}
+
+	<div class = 'pane'>
+	<h1>{{ instrument.name }}</h1>
+
+
+{% if items !=[] %}
+<a href = "{{url_for('newMenuItem', instrument_id = instrument.id )}}">Create New Item</a>
+	<div>
+	{% for i in items %}
+		<br>
+		<h1>{{i.name}}</h1>
+		<p>{{i.description}}</p>
+		<h3>{{i.price}}</h3>
+		<a href='{{url_for('editMenuItem', instrument_id = instrument.id, menu_id=i.id ) }}' >Edit</a>
+		</br>
+		<a href='{{url_for('deleteMenuItem', instrument_id = instrument.id, menu_id=i.id ) }}' >Delete</a>
+		</br>
+		</br>
+	{% endfor %}
+	</div>
+{% else %}
+<p> No items currently. </p>
+	<a href = '{{url_for('newMenuItem', instrument_id = instrument.id)}}'>Create New Item</a>
+{% endif %}
+
+
+</div>
+</body>
+
+</html>

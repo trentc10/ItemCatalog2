@@ -1,0 +1,29 @@
+<html>
+
+<head>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+{%if 'username' not in session %}
+<a href="{{url_for('showLogin')}}">Click Here to Login </a>
+{% else %}
+<a href="{{url_for('gdisconnect')}}">Logout </a>
+{% endif %}
+
+<h1> Edit Item </h1>
+
+<form action="#" method = 'post'>
+	<p>Name:</p>
+		<input type ='text' size='30' name='name' placeholder = '{{item.name }}'>
+	<p>Description:</p>
+		<input type ='text' size='30' name='description' placeholder = '{{item.description}}'>
+	<p>Price:</p>
+		<input type ='text' size='30' name='price' placeholder = '{{item.price}}'>
+	</br>
+<input type='submit' value='Edit'>
+<a href = '#'> Cancel </a>
+</form>
+
+</body>
+</html>

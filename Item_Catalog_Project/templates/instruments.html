@@ -1,0 +1,24 @@
+<html>
+
+<head>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+{%if 'username' not in session %}
+<a href="{{url_for('showLogin')}}">Click Here to Login </a>
+{% else %}
+<a href="{{url_for('gdisconnect')}}">Logout </a>
+{% endif %}
+<div class = 'pane'>
+<h1>Instruments</h1>
+<a href="{{url_for('newInstrument')}}" > <h3> Create a New Instrument </h3> </a>
+
+{% for instrument in instruments %}
+<a href = "{{url_for('showMenu', instrument_id = instrument.id)}}"> <p>{{instrument.name}}</p></a>
+{% endfor %}
+
+</div>
+</body>
+
+</html>
